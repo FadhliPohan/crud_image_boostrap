@@ -13,8 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
+
         Schema::create('penjuals', function (Blueprint $table) {
             $table->id();
+            $table->string('nama_penjual', 300);
+            $table->string('alamat_penjual', 300);
+            $table->string('foto_penjual', 300);
+            $table->string('NIK', 300);
+            $table->string('jk_penjual', 300);
             $table->timestamps();
         });
     }

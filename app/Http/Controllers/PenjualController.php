@@ -18,7 +18,8 @@ class PenjualController extends Controller
 
         return view('penjual.index',[
             'title'=>'Daftar penjual'
-        ], compact('penjual'))->with(1,(request(1)-1)*5);
+        ], compact('penjual'))
+        ->with('i',(request()->input('page',1)-1)*5);
     }
 
     /**

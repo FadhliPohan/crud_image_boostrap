@@ -15,6 +15,11 @@ return new class extends Migration
     {
         Schema::create('pembelis', function (Blueprint $table) {
             $table->id();
+            $table->string('nama_pembeli', 300);
+            $table->string('alamat_pembeli', 300);
+            $table->string('foto_pembeli', 300);
+            $table->string('NIK', 300);
+            $table->string('jk_pembeli', 300);
             $table->timestamps();
         });
     }

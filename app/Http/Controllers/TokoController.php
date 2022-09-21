@@ -14,7 +14,12 @@ class TokoController extends Controller
      */
     public function index()
     {
-        //
+        $toko = Toko::latest()->paginate(5);
+
+        return view('toko.index', [
+            'tittle' => 'Daftar Toko'
+        ], compact('toko'))
+            ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**

@@ -14,7 +14,12 @@ class TransaksiController extends Controller
      */
     public function index()
     {
-        //
+        $transaksi = Transaksi::latest()->paginate(5);
+
+        return view('transaksi.index', [
+            'tittle' => 'Daftar Transaksi'
+        ], compact('transaksi'))
+            ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**

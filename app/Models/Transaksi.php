@@ -9,6 +9,6 @@ class Transaksi extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'kode_transaksi','kode_pembeli','kode_penjual','kode_barang','jumlah_barang','total_barang'
+        'kode_transaksi', 'id_pembeli', 'id_penjual', 'id_barang', 'jumlah_barang', 'total_barang'
     ];
 }

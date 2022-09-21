@@ -17,7 +17,8 @@ class BarangController extends Controller
         $barang = Barang::latest()->paginate(5);
         return view('barang.index',[
             'title'=>'Daftar Barang'
-        ], compact('barang'))->with(1,(request(1)-1)*5);
+        ], compact('barang'))
+        ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
