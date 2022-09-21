@@ -14,7 +14,11 @@ class PembeliController extends Controller
      */
     public function index()
     {
-        //
+        $pembeli = Pembeli::latest()->paginate(5);
+        return view('pembeli.index', [
+            'title' => 'Daftar Pembeli'
+        ], compact('barang'))
+            ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**

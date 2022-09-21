@@ -14,7 +14,11 @@ class PenjualController extends Controller
      */
     public function index()
     {
-        //
+        $penjual = Penjual::latest()->paginate(5);
+
+        return view('penjual.index',[
+            'title'=>'Daftar penjual'
+        ], compact('penjual'))->with(1,(request(1)-1)*5);
     }
 
     /**
