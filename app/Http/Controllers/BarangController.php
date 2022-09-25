@@ -14,7 +14,7 @@ class BarangController extends Controller
      */
     public function index()
     {
-        $barang = Barang::latest()->paginate(5);
+        $barang = Barang::latest()->paginate();
         return view('barang.index',[
             'title'=>'Daftar Barang'
         ], compact('barang'))
@@ -28,7 +28,9 @@ class BarangController extends Controller
      */
     public function create()
     {
-        //
+        return view('barang.add',[
+            'title' => 'Buat Daftar barang Baru'
+        ]);
     }
 
     /**
@@ -39,7 +41,18 @@ class BarangController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         $request->validate([
+            'nama_barang' => ['required','string'],
+            'kode_barang' => ['required','string'],
+            'harga_barang' => ['required'],
+            'qty_barang' => ['required','string']
+            
+        ]);
+        $input = $request->all();
+
+        Barang::create($input);
+        return redirect()->route('barang.index')
+        ->with('success','Data berhasil ditambahkan');
     }
 
     /**
@@ -50,7 +63,9 @@ class BarangController extends Controller
      */
     public function show(Barang $barang)
     {
-        //
+        return view('barang.show',[
+            'title' => 'Lihat Data Barang',compact('barang')
+        ]);
     }
 
     /**
@@ -61,7 +76,9 @@ class BarangController extends Controller
      */
     public function edit(Barang $barang)
     {
-        //
+       return view('barang.edit',[
+            'title' => 'Update Daftar barang lama',compact('barang')
+        ]);
     }
 
     /**
@@ -72,9 +89,21 @@ class BarangController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Barang $barang)
-    {
-        //
+      {
+        $request->validate([
+            'nama_barang' => ['required','string'],
+            'kode_barang' => ['required','string'],
+            'harga_barang' => ['required'],
+            'qty_barang' => ['required','string']
+        ]);
+
+        $input=$request->all();
+        $barang->update($input);
+
+        return redirect()->route('barang.index')
+        ->with('success','Data Berhasil Diubah');
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -84,6 +113,8 @@ class BarangController extends Controller
      */
     public function destroy(Barang $barang)
     {
-        //
+        $barang->delete();
+        return redirect()->route('barang.index')
+        ->with('success','Berhasil dihapus');
     }
 }

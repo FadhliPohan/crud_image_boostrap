@@ -11,10 +11,10 @@
             href="https://datatables.net">official DataTables documentation</a>.</p>
 
             @if ($message = Session::get('success'))
-<div class="alert alert-success">
-    <p>{{ $message }}</p>
-</div>
-@endif
+            <div class="alert alert-success">
+                <p>{{ $message }}</p>
+            </div>
+            @endif
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
