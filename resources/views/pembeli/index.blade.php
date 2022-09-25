@@ -21,6 +21,16 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
+                    <div class="d-flex justify-content-between">
+                        <a class="btn btn-success w-15 " href="{{ Route('pembeli.create') }}">Tambah {{ $title }} <i
+                                class="fas fa-fw fa-plus-circle"></i>
+                            <!-- <span class="spinner-border spinner-border-sm"></span> -->
+                        </a>
+                        <a class="btn btn-danger w-15 " href="">Export To PDF <i class="fas fa-fw fa-file-pdf"></i>
+                            <!-- <span class="spinner-border spinner-border-sm"></span> -->
+                        </a>
+                    </div>
+                    <br>
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
@@ -33,7 +43,7 @@
                                 <th>Button</th>
                             </tr>
                         </thead>
-                        {{-- <tfoot>
+                        <tfoot>
                             <tr>
                                 <th>No</th>
                                 <th>Foto Pembeli</th>
@@ -43,7 +53,7 @@
                                 <th>Jenis Kelamin</th>
                                 <th>Button</th>
                             </tr>
-                        </tfoot> --}}
+                        </tfoot>
                         <tbody>
                             @foreach ($pembeli as $p)
                                 <tr>
@@ -54,11 +64,19 @@
                                     <td>{{ $p->alamat_pembeli }}</td>
                                     <td>{{ $p->jk_pembeli }}</td>
                                     <td>
-                                        <div class="flex">
-                                            <a href="" class="badge badge-success">Show</a>
-                                            <a href="" class="badge badge-primary">Edit</a>
-                                            <a href="" class="badge badge-danger">Delete</a>
-                                        </div>
+                                        <form
+                                            onsubmit="return confirm('Apakah Anda Yakin menghapus {{ $p->nama_pembeli }} ?');"
+                                            action="{{ route('pembeli.destroy', $p->id) }}" method="POST">
+                                            <div class="flex">
+                                                <a href="{{ Route('pembeli.show', $p->id) }}"
+                                                    class="badge badge-success">Show</a>
+                                                <a href="{{ Route('pembeli.edit', $p->id) }}"
+                                                    class="badge badge-primary">Edit</a>
+                                                @csrf @method('DELETE')
+                                                <button type="submit" href="{{ Route('pembeli.destroy', $p->id) }}"
+                                                    class="badge badge-danger">Delete</button>
+                                            </div>
+                                        </form>
                                     </td>
 
                                 </tr>

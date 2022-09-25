@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Transaksi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class TransaksiController extends Controller
 {
@@ -17,7 +18,7 @@ class TransaksiController extends Controller
         $transaksi = Transaksi::latest()->paginate();
 
         return view('transaksi.index', [
-            'title' => 'Daftar Transaksi'
+            'title' => 'Transaksi'
         ], compact('transaksi'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
@@ -29,7 +30,7 @@ class TransaksiController extends Controller
      */
     public function create()
     {
-        //
+     return view('transaksi.add',['title'=>'transaksi']);
     }
 
     /**
@@ -40,7 +41,21 @@ class TransaksiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'kode_transaksi' => ['required','string'],
+            'nama_pembeli' => ['required','string'],
+            'nama_penjual' => ['required'],
+            'id_barang' => ['required'],
+            'jumlah_barang' => ['required'],
+            'total_barang' => ['required']
+            
+        ]);
+        $input = $request->all();
+
+       
+        Transaksi::create($input);
+        return redirect()->route('transaksi.index')
+        ->with('success','Data berhasil ditambahkan');
     }
 
     /**
@@ -51,7 +66,9 @@ class TransaksiController extends Controller
      */
     public function show(Transaksi $transaksi)
     {
-        //
+          return view('transaksi.show',compact('transaksi'),[
+            'title' => 'Lihat Data transaksi'
+        ]);
     }
 
     /**
@@ -62,7 +79,9 @@ class TransaksiController extends Controller
      */
     public function edit(Transaksi $transaksi)
     {
-        //
+          return view('transaksi.edit',compact('transaksi'),[
+            'title' => 'Update Daftar transaksi lama'
+        ]);
     }
 
     /**
@@ -74,7 +93,20 @@ class TransaksiController extends Controller
      */
     public function update(Request $request, Transaksi $transaksi)
     {
-        //
+        $request->validate([
+            'kode_transaksi' => ['required','string'],
+            'nama_pembeli' => ['required','string'],
+            'nama_penjual' => ['required'],
+            'id_barang' => ['required'],
+            'jumlah_barang' => ['required'],
+            'total_barang' => ['required']
+        ]);
+
+        $input=$request->all();
+
+        $transaksi->update($input);
+        return redirect()->route('transaksi.index')
+        ->with('success','Data Berhasil Diubah');
     }
 
     /**
@@ -85,6 +117,8 @@ class TransaksiController extends Controller
      */
     public function destroy(Transaksi $transaksi)
     {
-        //
+        $transaksi->delete();
+        return redirect()->route('transaksi.index')
+        ->with('success','Berhasil dihapus');
     }
 }

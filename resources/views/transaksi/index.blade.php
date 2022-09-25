@@ -21,6 +21,16 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
+                     <div class="d-flex justify-content-between">
+                        <a class="btn btn-success w-15 " href="{{ Route('transaksi.create') }}">Tambah {{ $title }} <i
+                                class="fas fa-fw fa-plus-circle"></i>
+                            <!-- <span class="spinner-border spinner-border-sm"></span> -->
+                        </a>
+                        <a class="btn btn-danger w-15 " href="">Export To PDF <i class="fas fa-fw fa-file-pdf"></i>
+                            <!-- <span class="spinner-border spinner-border-sm"></span> -->
+                        </a>
+                    </div>
+                    <br>
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>

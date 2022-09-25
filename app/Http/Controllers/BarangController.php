@@ -16,7 +16,7 @@ class BarangController extends Controller
     {
         $barang = Barang::latest()->paginate();
         return view('barang.index',[
-            'title'=>'Daftar Barang'
+            'title'=>'Barang'
         ], compact('barang'))
         ->with('i', (request()->input('page', 1) - 1) * 5);
     }
@@ -29,7 +29,7 @@ class BarangController extends Controller
     public function create()
     {
         return view('barang.add',[
-            'title' => 'Buat Daftar barang Baru'
+            'title' => 'Barang'
         ]);
     }
 
@@ -44,8 +44,8 @@ class BarangController extends Controller
          $request->validate([
             'nama_barang' => ['required','string'],
             'kode_barang' => ['required','string'],
-            'harga_barang' => ['required'],
-            'qty_barang' => ['required','string']
+            'harga_barang' => ['required','integer'],
+            'qty_barang' => ['required','integer']
             
         ]);
         $input = $request->all();

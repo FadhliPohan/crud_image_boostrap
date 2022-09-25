@@ -17,7 +17,7 @@ class PembeliController extends Controller
     {
         $pembeli = Pembeli::latest()->paginate();
         return view('pembeli.index', [
-            'title' => 'Daftar Pembeli'
+            'title' => 'Pembeli'
         ], compact('pembeli'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
@@ -29,8 +29,8 @@ class PembeliController extends Controller
      */
     public function create()
     {
-        return view('pembeli.index',[
-            'title' => 'Buat Daftar Pembeli Baru'
+        return view('pembeli.add',[
+            'title' => 'Pembeli'
         ]);
     }
 
@@ -53,12 +53,12 @@ class PembeliController extends Controller
         $input = $request->all();
 
         if($foto = $request->file('foto_pembeli')){
-            $penggunaimage = date('YmdHis') .".".
+            $penggunaimage = date('YmdHis') . "." .
             $foto->getClientOriginalExtension();
             //extention menyimpan
-            $foto->storeAs('public/foto',$penggunaimage);
+            $foto->storeAs('public/foto', $penggunaimage);
             //extention ke database
-            $input[$foto] ="$penggunaimage";
+            $input['foto_pembeli'] ="$penggunaimage";
         }
         Pembeli::create($input);
         return redirect()->route('pembeli.index')
@@ -73,8 +73,8 @@ class PembeliController extends Controller
      */
     public function show(Pembeli $pembeli)
     {
-        return view('pembeli.show',[
-            'title' => 'Lihat Data Pembeli',compact('pembeli')
+        return view('pembeli.show',compact('pembeli'),[
+            'title' => 'Pembeli'
         ]);
     }
 
@@ -86,8 +86,8 @@ class PembeliController extends Controller
      */
     public function edit(Pembeli $pembeli)
     {
-        return view('pembeli.edit',[
-            'title' => 'Update Daftar Pembeli lama',compact('pembeli')
+        return view('pembeli.edit',compact('pembeli'),[
+            'title' => 'Pembeli'
         ]);
     }
 

@@ -18,7 +18,7 @@ class TokoController extends Controller
         $toko = Toko::latest()->paginate();
 
         return view('toko.index', [
-            'title' => 'Daftar Toko'
+            'title' => 'Toko'
         ], compact('toko'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
@@ -30,7 +30,7 @@ class TokoController extends Controller
      */
     public function create()
     {
-        return view('toko.index',['title'=>'Tambahkan Toko Baru'], compact('toko'));
+        return view('toko.add',['title'=>'Tambahkan Toko Baru']);
     }
 
     /**

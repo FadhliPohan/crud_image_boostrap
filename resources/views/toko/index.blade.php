@@ -21,6 +21,16 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
+                    <div class="d-flex justify-content-between">
+                        <a class="btn btn-success w-15 " href="{{ Route('toko.create') }}">Tambah {{ $title }} <i
+                                class="fas fa-fw fa-plus-circle"></i>
+                            <!-- <span class="spinner-border spinner-border-sm"></span> -->
+                        </a>
+                        <a class="btn btn-danger w-15 " href="">Export To PDF <i class="fas fa-fw fa-file-pdf"></i>
+                            <!-- <span class="spinner-border spinner-border-sm"></span> -->
+                        </a>
+                    </div>
+                    <br>
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
@@ -43,25 +53,25 @@
 
                                 <th>Button</th>
                             </tr>
-
-                            <tbody>
-                                @foreach ($toko as $to)
-                                    <tr>
-                                        <td>{{ ++$i }}</td>
-                                        <td>{{ $to->nama_toko }}</td>
-                                        <td>{{ $to->jenis_toko }}</td>
-                                        <td>{{ $to->alamat_toko }}</td>
-                                        <td>{{ $to->foto_toko }}</td>
-                                        <td>
-                                            <div class="flex">
-                                                <a href="" class="badge badge-success">Show</a>
-                                                <a href="" class="badge badge-primary">Edit</a>
-                                                <a href="" class="badge badge-danger">Delete</a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
+                        </tfoot>
+                        <tbody>
+                            @foreach ($toko as $to)
+                                <tr>
+                                    <td>{{ ++$i }}</td>
+                                    <td>{{ $to->nama_toko }}</td>
+                                    <td>{{ $to->jenis_toko }}</td>
+                                    <td>{{ $to->alamat_toko }}</td>
+                                    <td>{{ $to->foto_toko }}</td>
+                                    <td>
+                                        <div class="flex">
+                                            <a href="" class="badge badge-success">Show</a>
+                                            <a href="" class="badge badge-primary">Edit</a>
+                                            <a href="" class="badge badge-danger">Delete</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
 
 
                     </table>

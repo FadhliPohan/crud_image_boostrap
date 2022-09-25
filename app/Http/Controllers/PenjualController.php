@@ -18,7 +18,7 @@ class PenjualController extends Controller
         $penjual = Penjual::latest()->paginate();
 
         return view('penjual.index',[
-            'title'=>'Daftar penjual'
+            'title'=>'Penjual'
         ], compact('penjual'))
         ->with('i',(request()->input('page',1)-1)*5);
     }
@@ -30,7 +30,7 @@ class PenjualController extends Controller
      */
     public function create()
     {
-           return view('penjual.index',[
+           return view('penjual.add',[
             'title' => 'Buat Daftar penjual Baru'
         ]);
     }
@@ -59,7 +59,7 @@ class PenjualController extends Controller
             //extention menyimpan
             $foto->storeAs('public/foto',$judulfoto);
             //extention ke database
-            $input[$foto] ="$judulfoto";
+            $input['foto_penjual'] ="$judulfoto";
         }
         Penjual::create($input);
         return redirect()->route('penjual.index')

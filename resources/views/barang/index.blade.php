@@ -21,6 +21,16 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
+                    <div class="d-flex justify-content-between">
+                        <a class="btn btn-success w-15 " href="{{ Route('barang.create') }}">Tambah {{ $title }} <i
+                                class="fas fa-fw fa-plus-circle"></i>
+                            <!-- <span class="spinner-border spinner-border-sm"></span> -->
+                        </a>
+                        <a class="btn btn-danger w-15 " href="">Export To PDF <i class="fas fa-fw fa-file-pdf"></i>
+                            <!-- <span class="spinner-border spinner-border-sm"></span> -->
+                        </a>
+                    </div>
+                    <br>
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
@@ -43,25 +53,25 @@
 
                                 <th>Button</th>
                             </tr>
-
-                            <tbody>
-                                @foreach ($barang as $p)
-                                    <tr>
-                                        <td>{{ ++$i }}</td>
-                                        <td>{{ $p->nama_barang }}</td>
-                                        <td>{{ $p->kode_barang }}</td>
-                                        <td>{{ $p->harga_barang }}</td>
-                                        <td>{{ $p->qty_barang }}</td>
-                                        <td>
-                                            <div class="flex">
-                                                <a href="" class="badge badge-success">Show</a>
-                                                <a href="" class="badge badge-success">Edit</a>
-                                                <a href="" class="badge badge-success">Delete</a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
+                        </tfoot>
+                        <tbody>
+                            @foreach ($barang as $p)
+                                <tr>
+                                    <td>{{ ++$i }}</td>
+                                    <td>{{ $p->nama_barang }}</td>
+                                    <td>{{ $p->kode_barang }}</td>
+                                    <td>{{ $p->harga_barang }}</td>
+                                    <td>{{ $p->qty_barang }}</td>
+                                    <td>
+                                        <div class="flex">
+                                            <a href="" class="badge badge-success">Show</a>
+                                            <a href="" class="badge badge-success">Edit</a>
+                                            <a href="" class="badge badge-success">Delete</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
 
 
                     </table>
